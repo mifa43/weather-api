@@ -1,0 +1,23 @@
+version: '3'
+
+volumes:
+  weather_data:
+      driver: local
+
+services:
+  fastapi_weather:
+    container_name: fastapi_weather
+    build:
+      context: ./
+      # args: 
+      #   TEST: Test
+    image: python
+    ports:
+      - 8081:8080
+    networks:
+      - weather_dev
+
+networks:
+  weather_dev:
+    external:
+      name: weather_dev
